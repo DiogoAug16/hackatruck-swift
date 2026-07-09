@@ -22,6 +22,18 @@ struct ContentView: View {
         ZStack {
             Color.defaultBg.ignoresSafeArea()
             
+            if (resultado > 0 && resultado < 9.9) {
+                Color.primeiraVelocidade.ignoresSafeArea()
+            } else if (resultado > 10 && resultado < 29.9) {
+                Color.segundaVelocidade.ignoresSafeArea()
+            } else if (resultado > 30 && resultado < 69.9) {
+                Color.terceiraVelocidade.ignoresSafeArea()
+            } else if (resultado > 70 && resultado < 89.9) {
+                Color.quartaVelocidade.ignoresSafeArea()
+            } else if (resultado > 90 && resultado < 130) {
+                Color.quintaVelocidade.ignoresSafeArea()
+            }
+            
             VStack{
                 Text("**Digite a distancia (km)**").multilineTextAlignment(.center)
                 TextField("", value: $distancia, format: .number).multilineTextAlignment(.center)
@@ -58,11 +70,7 @@ struct ContentView: View {
                     Text(resultado, format: .number.precision(.fractionLength(2)))
                         .font(.system(size: 50))
                     Text("km/h").font(.system(size: 50))
-                    
-                    if (resultado > 0 && resultado < 9.9) {
-                        Color.primeiraVelocidade
-                    }
-                    
+
                 }
                 
                 VStack {
