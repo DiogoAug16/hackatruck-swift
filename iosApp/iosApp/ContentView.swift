@@ -54,43 +54,70 @@ struct ContentView: View {
                         .cornerRadius(15)
                 }
                                 
-                Text(resultado, format: .number.precision(.fractionLength(2)))
-                    .font(.system(size: 50))
-            
-                Image("default_img")
-                    .resizable()
-                    .frame(width: 370, height: 370)
+                HStack {
+                    Text(resultado, format: .number.precision(.fractionLength(2)))
+                        .font(.system(size: 50))
+                    Text("km/h").font(.system(size: 50))
+                    
+                    if (resultado > 0 && resultado < 9.9) {
+                        Color.primeiraVelocidade
+                    }
+                    
+                }
+                
+                VStack {
+                    Image("default_img")
+                        .resizable()
+                        .frame(width: 370, height: 370)
+                        .padding(-10)
+                }
+                
+                Spacer()
                                 
-                ZStack {
+                ZStack (){
                     Rectangle ()
                         .fill(Color.black)
                         .frame(width: 290, height: 160, alignment: .center)
                         .cornerRadius(13)
                     VStack (){
-                        HStack {
+                        HStack() {
+                            Spacer()
                             Text("TARTARUGA").foregroundColor(.white)
+                            Spacer()
                             Text("(0 - 9.9km/h)").foregroundColor(.white)
+                            Spacer()
                         }
                         
-                        HStack {
+                        HStack (){
+                            Spacer()
                             Text("ELEFANTE").foregroundColor(.white)
+                            Spacer()
                             Text("(10 - 29.9km/h)").foregroundColor(.white)
+                            Spacer()
                         }
                         
-                        HStack {
+                        HStack (){
+                            Spacer()
                             Text("AVESTRUZ").foregroundColor(.white)
+                            Spacer()
                             Text("(30 - 69.9km/h)").foregroundColor(.white)
+                            Spacer()
                         }
                         
-                        HStack {
+                        HStack (){
+                            Spacer()
                             Text("LEÃO").foregroundColor(.white)
+                            Spacer()
                             Text("(70 - 89.9km/h)").foregroundColor(.white)
+                            Spacer()
                         }
                         
-                        HStack {
+                        HStack (){
+                            Spacer()
                             Text("GUEPARDO").foregroundColor(.white)
                             Spacer()
                             Text("(90 - 130km/h)").foregroundColor(.white)
+                            Spacer()
                         }
                     }
                 }
