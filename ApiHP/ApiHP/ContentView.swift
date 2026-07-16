@@ -8,54 +8,74 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    @StateObject var viewModel = ViewModel()
-    @State var colorBG = Color.background
-    @State var listBG = Color.listBackground
-    @State var colorText = Color.text
-    
-    var body: some View {
-        ZStack {
-            colorBG
-                .ignoresSafeArea()
-            
-            VStack {
-                Image("Header")
-                    .resizable()
-                    .frame(width: 200,height: 200)
-                
-                NavigationStack() {
-                    ScrollView {
-                        ForEach(viewModel.personagens){ personagens in
-                            HStack() {
-                                AsyncImage(url: URL(string: personagens.image!)) { img in
-                                    img.image?.resizable()
-                                        .scaledToFill()
-                                }
-                                .frame(width: 80, height: 80)
-                                .clipShape(Circle())
-                                 
-                                NavigationLink(destination: ItemDetail()){
-                                    Text(personagens.name!)
-                                        .foregroundStyle(colorText)
-                                }
-                                Spacer()
-                            }
-                            .font(.system(size: 30))
-                            .padding()
-                        }
-                        .background(listBG)
-                    }
-                    
-                }
-                .onAppear() {
-                    viewModel.fetch()
-                }
-                
-            }
-            
-        }
 
+    @StateObject private var viewModel = ViewModel()
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.background
+                    .ignoresSafeArea()
+
+                VStack(spacing: 0) {
+                    Image("Header")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            ForEach(viewModel.personagens) { personagem in
+
+                                NavigationLink {
+                                    ItemDetail(personagem: personagem)
+                                } label: {
+                                    HStack(spacing: 16) {
+                                        CharacterImage(
+                                            imageURL: personagem.image,
+                                            size: 80
+                                        )
+
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text(personagem.name ?? "Nome desconhecido")
+                                                .font(.title3)
+                                                .fontWeight(.semibold)
+                                                .foregroundStyle(Color.text)
+
+                                            Text(personagem.actor ?? "Ator não informado")
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        }
+
+                                        Spacer()
+
+                                        Image(systemName: "chevron.right")
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 18)
+                                            .fill(Color.listBackground)
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding(.horizontal)
+                        .padding(.bottom)
+                    }
+                }
+            }
+            .navigationTitle("Grifinória")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color.background, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+        }
+        .task {
+            if viewModel.personagens.isEmpty {
+                viewModel.fetch()
+            }
+        }
     }
 }
 
