@@ -44,6 +44,7 @@ struct ContentView: View {
 
                                             Text(personagem.actor ?? "Ator não informado")
                                                 .font(.subheadline)
+                                 
                                                 .foregroundStyle(.secondary)
                                         }
 
@@ -66,8 +67,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .navigationTitle("Grifinória")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.background, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
         }

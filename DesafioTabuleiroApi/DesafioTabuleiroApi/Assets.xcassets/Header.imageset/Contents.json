@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "jogo-de-tabuleiro-1509709857499_v2_4x3.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
