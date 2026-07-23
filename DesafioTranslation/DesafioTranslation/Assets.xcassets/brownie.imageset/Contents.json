@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "brownie_meio_amargo_2_20251008133219_6a2a34330afb.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
